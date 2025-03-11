@@ -29,6 +29,7 @@ import {FormsModule} from "@angular/forms";
 import {RespuestaDTO} from "../Modelos/RespuestaDTO";
 import {JugadorService} from "../Servicios/JugadorService";
 import {JugadorDTO} from "../Modelos/JugadorDTO";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -53,7 +54,7 @@ export class HomePage implements OnInit {
 
   private inicioTiempo: number = 0; // Variable para medir el tiempo real jugado
 
-  constructor(private preguntaService: PreguntaService, private jugadorService: JugadorService) {}
+  constructor(private preguntaService: PreguntaService, private jugadorService: JugadorService, private router: Router) {}
 
   ngOnInit() {}
 
@@ -141,7 +142,7 @@ export class HomePage implements OnInit {
   }
 
   reiniciarJuego() {
-    window.location.reload(); // Recarga toda la página
+    this.router.navigateByUrl('/'); // Redirige a la ruta con path ''
   }
 
   obtenerTop10Jugadores() {
