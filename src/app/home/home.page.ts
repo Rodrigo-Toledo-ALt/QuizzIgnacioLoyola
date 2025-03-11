@@ -142,7 +142,7 @@ export class HomePage implements OnInit {
   }
 
   reiniciarJuego() {
-    this.router.navigateByUrl('/'); // Redirige a la ruta con path ''
+    this.router.navigateByUrl(''); // Redirige a la ruta con path ''
   }
 
   obtenerTop10Jugadores() {
