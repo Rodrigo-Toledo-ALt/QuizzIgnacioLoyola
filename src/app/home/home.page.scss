@@ -1,27 +1,350 @@
-#container {
+ion-content {
+  --background: #F8F69F; /* Amarillo claro */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ion-toolbar {
+  --background: #BAB986; /* Beige verdoso */
+  --color: black;
+}
+
+.container {
+  width: 98%;
+  max-width: 1600px;
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh; /* Reducir la altura del fondo oscuro */
+}
+
+.sidebar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto; /* Ajustar para que no ocupe toda la pantalla */
+}
+
+.sidebar {
+  width: 60%;
   text-align: center;
+  padding: 20px;
+  background-color: #573e2d; /* Color marrón oscuro */
+  color: white;
+  min-height: 300px; /* Reduce la altura del contenedor */
+  max-height: 400px; /* Evita que sea demasiado largo */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
-  position: absolute;
+
+.question-container {
+  display: flex;
+  justify-content: center;
+}
+
+.question-card {
+  width: 100%;
+  text-align: center;
+  background-color: #573e2d; /* Gris verdoso */
+  color: white;
+}
+/* Contenedor de la imagen con tamaño fijo */
+.image-container {
+  width: 100%;
+  height: 300px; /* Fija la altura del contenedor */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Evita que imágenes muy grandes lo rompan */
+}
+
+
+.question-image {
+  width: 100%; /* Para que ocupe todo el ancho disponible del contenedor */
+  max-width: 400px; /* Tamaño máximo para que la imagen no sea demasiado grande */
+  min-width: 200px; /* Tamaño mínimo para mantener la consistencia en pantallas pequeñas */
+  max-height: 400px; /* Altura máxima para evitar imágenes demasiado grandes */
+  min-height: 175px; /* Altura mínima para mantener un tamaño uniforme */
+  border-radius: 10px; /* Mantiene las esquinas redondeadas */
+  object-fit: cover; /* Asegura que la imagen se ajuste correctamente sin distorsión */
+  display: block;
+  margin: auto; /* Centrar la imagen dentro del contenedor */
+}
+
+
+.answers {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.answers ion-button {
+  --background: #bab986; /* Gris oscuro */
+  --color: white;
+  border-radius: 8px;
+}
+
+.sidebar-container {
+  display: flex;
+  justify-content: center;
+}
+
+.sidebar {
+  width: 60%;
+  text-align: center;
+  padding: 10px;
+  background-color: #573e2d; /* Gris oscuro */
+  color: white;
+}
+
+.timer-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #BAB986; /* Azul oscuro */
+  color: #573E3D;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
+  margin: 10px auto;
+}
+* {
+  font-family: Arial, sans-serif; /* Puedes cambiar a otra fuente si lo deseas */
+  color: #573E3D; /* Marrón oscuro */
+}
+
+.custom-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 8px 12px;
+  background-color: #BAB986;
+  border-radius: 8px;
+}
+
+.custom-input ion-label {
+  color: #573E3D; /* Color del texto del label */
+  font-weight: bold;
+}
+
+.custom-input ion-input {
+  color: #573E3D; /* Color del texto dentro del input */
+  font-size: 1.2em;
+  text-align: center;
+}
+
+/* Opcional: Asegurar que el input no tenga bordes blancos inesperados */
+.custom-input::part(native) {
+  background-color: #BAB986 ;
+  border: none;
+}
+
+/* Hace que el modal tenga fondo transparente */
+ion-modal.custom-modal {
+  --background: transparent;
+  --border-radius: 20px; /* Redondear el modal */
+}
+
+/* Fondo y estructura del contenido dentro del modal */
+.modal-content {
+  --background: #F8F69F; /* Amarillo claro, igual que el fondo de la página */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+/* Contenedor para centrar el modal */
+.modal-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* Caja central del modal */
+.modal-container {
+  background-color: #573e2d; /* Mismo fondo que las tarjetas */
+  color: white;
+  padding: 20px;
+  border-radius: 15px;
+  width: 80%;
+  max-width: 400px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+/* Título dentro del modal */
+.modal-container h2 {
+  color: #F8F69F; /* Amarillo claro */
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+/* Párrafo dentro del modal */
+.modal-container p {
+  font-size: 1.2em;
+  color: #BAB986; /* Beige verdoso */
+  margin-bottom: 20px;
+}
+
+/* Botón dentro del modal */
+.modal-container ion-button {
+  --background: #BAB986; /* Beige verdoso */
+  --color: #573E3D; /* Marrón oscuro */
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+.centered-sidebar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Hace que el card ocupe toda la altura */
+  text-align: center;
+}
+
+.center-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.fullscreen-container {
+  position: fixed;
+  top: 0;
   left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #F8F69F; /* Mismo color de fondo */
+  z-index: 10;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.centered-sidebar {
+  width: 400px; /* Ajustar ancho si es necesario */
+  padding: 20px;
+  text-align: center;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+.center-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
 }
 
-#container a {
-  text-decoration: none;
+.label-nombre {
+  font-size: 1em;
+  font-weight: normal;
+  color: #573E3D; /* Color más tenue para menos peso visual */
+  flex: 0 0 30%; /* Ocupa el 30% del espacio */
+  text-align: left;
 }
+
+.nombre-texto {
+  font-size: 1.2em; /* Más grande para destacar */
+  font-weight: bold; /* Resalta el texto */
+  color: #573E3D; /* Asegurar un color llamativo */
+  flex: 1; /* Ocupa el resto del espacio */
+  text-align: left;
+  padding-left: 10px; /* Pequeño margen entre label y texto */
+}
+
+
+/* Estilos del modal */
+ion-modal.custom-modal {
+  --background: transparent;
+  --border-radius: 20px; /* Redondear el modal */
+}
+
+/* Permitir scroll en el contenido del modal */
+.modal-content {
+  --background: #F8F69F; /* Amarillo claro */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  overflow: auto; /* Permite el desplazamiento si es necesario */
+}
+
+/* Ajuste para que el contenedor del modal permita scroll */
+.modal-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  max-height: 90vh; /* Limita la altura del modal */
+  overflow: auto; /* Permite desplazamiento si el contenido es grande */
+}
+
+/* Estilizar el fondo del modal y hacerlo scrollable */
+.modal-container {
+  background-color: #573e2d; /* Marrón oscuro */
+  color: white;
+  padding: 20px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  max-height: 80vh; /* Limita la altura máxima */
+  overflow-y: auto; /* Permite scroll si el contenido es largo */
+}
+
+/* Estilo para la lista de jugadores dentro del modal */
+ion-list {
+  background-color: #573e2d !important; /* Marrón oscuro */
+  border-radius: 10px;
+  padding: 10px;
+}
+
+/* Estilo para cada jugador en la lista */
+ion-item {
+  background-color: #573e2d !important; /* Fondo marrón oscuro */
+  color: white !important;
+  --ion-item-background: #573e2d !important; /* Asegura el color de fondo */
+  border-bottom: 1px solid #BAB986; /* Línea separadora en beige verdoso */
+}
+
+/* Ajuste del texto para que contraste bien */
+ion-label {
+  color: white !important;
+}
+
+/* Asegura que los elementos internos no afecten el color del fondo */
+ion-item::part(native) {
+  background: #573e2d !important;
+}
+
+/* Estilo para los títulos dentro del modal */
+.modal-container h3 {
+  color: white !important; /* Asegura que los títulos sean blancos */
+  font-size: 1.3em;
+  margin-bottom: 10px;
+}
+
+/* Estilo para los textos en negrita dentro del modal */
+.modal-container strong {
+  color: white !important; /* Asegura que el texto en <strong> sea blanco */
+}
+
+.sidebar * {
+  color: white !important;
+}
+

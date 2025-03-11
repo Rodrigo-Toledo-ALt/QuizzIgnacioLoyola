@@ -35,3 +35,45 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+:root {
+  --ion-color-primary: #BAB986;  /* Beige verdoso */
+  --ion-color-primary-rgb: 186, 185, 134;
+  --ion-color-primary-contrast: #000000;
+  --ion-color-primary-contrast-rgb: 0, 0, 0;
+
+  --ion-color-secondary: #7C7B6C; /* Gris verdoso */
+  --ion-color-secondary-rgb: 124, 123, 108;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+
+  --ion-color-tertiary: #3E3E53; /* Gris oscuro */
+  --ion-color-tertiary-rgb: 62, 62, 83;
+  --ion-color-tertiary-contrast: #ffffff;
+  --ion-color-tertiary-contrast-rgb: 255, 255, 255;
+
+  --ion-color-success: #F8F69F; /* Amarillo claro */
+  --ion-color-success-rgb: 248, 246, 159;
+  --ion-color-success-contrast: #000000;
+  --ion-color-success-contrast-rgb: 0, 0, 0;
+
+  --ion-color-warning: #3E3E53; /* Gris oscuro */
+  --ion-color-warning-rgb: 62, 62, 83;
+  --ion-color-warning-contrast: #ffffff;
+  --ion-color-warning-contrast-rgb: 255, 255, 255;
+
+  --ion-color-danger: #000039; /* Azul oscuro */
+  --ion-color-danger-rgb: 0, 0, 57;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-contrast-rgb: 255, 255, 255;
+
+  --ion-color-light: #F8F69F; /* Amarillo claro */
+  --ion-color-light-rgb: 248, 246, 159;
+  --ion-color-light-contrast: #000000;
+  --ion-color-light-contrast-rgb: 0, 0, 0;
+
+  --ion-color-dark: #000039; /* Azul oscuro */
+  --ion-color-dark-rgb: 0, 0, 57;
+  --ion-color-dark-contrast: #ffffff;
+  --ion-color-dark-contrast-rgb: 255, 255, 255;
+}

@@ -1,20 +1,105 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+<ion-app>
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Quizz App</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
-</ion-content>
+  <ion-content>
+    <div class="container">
+      <ion-grid>
+        <ion-row>
+
+          <!-- Pregunta (60% del ancho) -->
+          <ion-col size-md="7" size-sm="12" class="question-container">
+            <ion-card class="question-card" *ngIf="preguntaActual">
+              <ion-card-header>
+                <ion-card-title style="color: #BAB986">{{ preguntaActual.titulo }}</ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                <div class="image-container">
+                  <img [src]="preguntaActual.imagenUrl || 'https://via.placeholder.com/150'" class="question-image" alt="Pregunta">
+                </div>
+                <div class="answers">
+                  <ion-button *ngFor="let respuesta of preguntaActual.respuestas" expand="full" (click)="seleccionarRespuesta(respuesta)">
+                    {{ respuesta.texto }}
+                  </ion-button>
+                </div>
+              </ion-card-content>
+            </ion-card>
+
+          </ion-col>
+
+          <!-- Barra lateral (35% del ancho) -->
+          <ion-col size-md="5" size-sm="12" class="sidebar-container">
+
+            <!-- Contenedor centrado antes de iniciar el juego -->
+            <div class="fullscreen-container" *ngIf="!temporizadorActivo">
+              <ion-card class="sidebar centered-sidebar">
+                <div class="center-content">
+                  <ion-item class="custom-input">
+                    <ion-label position="floating">Nombre</ion-label>
+                    <ion-input [(ngModel)]="nombreUsuario" placeholder="Ingresa tu nombre"></ion-input>
+                  </ion-item>
+                  <ion-button expand="full" color="success" (click)="iniciarJuego()">Comenzar</ion-button>
+                </div>
+              </ion-card>
+            </div>
+
+            <!-- Contenedor normal cuando el juego está activo -->
+            <!-- Contenedor normal cuando el juego está activo -->
+            <ion-card class="sidebar" *ngIf="temporizadorActivo">
+              <div class="timer-circle">{{ tiempoRestante }}s</div>
+
+              <ion-item class="custom-input">
+                <ion-label class="label-nombre">Nombre:</ion-label>
+                <ion-text class="nombre-texto">{{ nombreUsuario }}</ion-text>
+              </ion-item>
+
+
+              <ion-button expand="full">Puntuación: {{ puntuacion }}</ion-button>
+            </ion-card>
+
+
+          </ion-col>
+
+
+
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <ion-modal [isOpen]="juegoFinalizado" (ionModalDidDismiss)="juegoFinalizado = false" class="custom-modal">
+      <ion-content class="modal-content">
+        <ng-template>
+          <div class="modal-wrapper">
+            <div class="modal-container">
+              <h2>¡Enhorabuena {{ nombreUsuario }}!</h2>
+              <p>Tu puntuación final es: <strong>{{ puntuacion }}</strong></p>
+              <p>Tiempo jugado: <strong>{{ tiempoRestante }} segundos</strong></p>
+
+              <!-- Tabla de top 10 jugadores -->
+              <h3>Top 10 Jugadores</h3>
+              <ion-list>
+                <ion-item *ngFor="let jugador of topJugadores">
+                  <ion-label>
+                    <strong>{{ jugador.nombre }}</strong> - {{ jugador.puntuacion }} pts ({{ jugador.tiempo }}s)
+                  </ion-label>
+                </ion-item>
+              </ion-list>
+
+              <ion-button expand="full" color="primary" (click)="reiniciarJuego()">Jugar de nuevo</ion-button>
+            </div>
+          </div>
+        </ng-template>
+
+      </ion-content>
+    </ion-modal>
+
+
+
+
+
+  </ion-content>
+</ion-app>
+
