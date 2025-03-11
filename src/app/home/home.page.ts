@@ -37,7 +37,7 @@ import {JugadorDTO} from "../Modelos/JugadorDTO";
   standalone: true,
   imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonRow, IonCol, IonApp, IonCard, IonCardTitle, IonCardHeader, IonCardContent, IonButton, NgForOf, NgIf, IonItem, IonLabel, IonInput, FormsModule, IonModal, IonText, IonList],
 })
-export class HomePage implements  OnInit{
+export class HomePage implements OnInit {
 
   preguntas: PreguntaDTO[] = [];
   preguntaActual?: PreguntaDTO;
@@ -46,31 +46,63 @@ export class HomePage implements  OnInit{
 
   topJugadores: JugadorDTO[] = []; // Lista de los mejores jugadores
 
-  tiempoRestante: number = 120  ;
+  tiempoRestante: number = 120;
   temporizadorActivo: boolean = false;
   intervalo?: any;
   juegoFinalizado: boolean = false; // Para bloquear el juego al terminar
 
   private inicioTiempo: number = 0; // Variable para medir el tiempo real jugado
 
-  constructor( private preguntaService: PreguntaService, private jugadorService: JugadorService) {}
+  constructor(private preguntaService: PreguntaService, private jugadorService: JugadorService) {}
 
+  ngOnInit() {}
 
-  ngOnInit() {
-
-  }
-
-  cargarPreguntas() {
+  /**
+   * Carga las preguntas y, una vez completado el proceso, inicia el temporizador.
+   */
+  cargarPreguntasYIniciarTemporizador() {
     this.preguntaService.obtenerPreguntasAleatorias().subscribe(
       (data) => {
         this.preguntas = data;
         this.preguntaActual = this.preguntas.length > 0 ? this.preguntas[0] : undefined;
+
+        // Solo inicia el temporizador después de cargar las preguntas
+        if (this.preguntas.length > 0) {
+          this.iniciarTemporizador();
+        }
       },
       (error) => {
         console.error('Error al obtener preguntas:', error);
       }
     );
   }
+
+  /**
+   * Inicia el juego llamando primero a la carga de preguntas y luego iniciando el temporizador.
+   */
+  iniciarJuego() {
+    if (!this.temporizadorActivo) {
+      this.temporizadorActivo = true;
+      this.tiempoRestante = 120; // Tiempo inicial
+      this.inicioTiempo = this.tiempoRestante; // Guarda el tiempo inicial al iniciar el juego
+
+      this.cargarPreguntasYIniciarTemporizador();
+    }
+  }
+
+  /**
+   * Inicia el temporizador después de que las preguntas hayan sido cargadas.
+   */
+  iniciarTemporizador() {
+    this.intervalo = setInterval(() => {
+      if (this.tiempoRestante > 0) {
+        this.tiempoRestante--;
+      } else {
+        this.detenerTemporizador();
+      }
+    }, 1000);
+  }
+
   seleccionarRespuesta(respuesta: RespuestaDTO) {
     if (respuesta.esCorrecta) {
       this.puntuacion += 10;
@@ -84,27 +116,6 @@ export class HomePage implements  OnInit{
       this.detenerTemporizador();
     }
   }
-
-
-
-  iniciarJuego() {
-    if (!this.temporizadorActivo) {
-      this.temporizadorActivo = true;
-      this.tiempoRestante = 120; // Tiempo inicial (puedes cambiarlo según necesites)
-      this.inicioTiempo = this.tiempoRestante; // Guarda el tiempo inicial al iniciar el juego
-
-      this.cargarPreguntas();
-
-      this.intervalo = setInterval(() => {
-        if (this.tiempoRestante > 0) {
-          this.tiempoRestante--;
-        } else {
-          this.detenerTemporizador();
-        }
-      }, 1000);
-    }
-  }
-
 
   detenerTemporizador() {
     if (this.intervalo) {
@@ -129,7 +140,6 @@ export class HomePage implements  OnInit{
     });
   }
 
-
   reiniciarJuego() {
     window.location.reload(); // Recarga toda la página
   }
@@ -139,7 +149,4 @@ export class HomePage implements  OnInit{
       this.topJugadores = jugadores;
     });
   }
-
-
-
 }
