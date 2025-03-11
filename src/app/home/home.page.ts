@@ -104,9 +104,14 @@ export class HomePage implements OnInit {
     }, 1000);
   }
 
+  /**
+   * Maneja la selección de una respuesta y actualiza la puntuación.
+   */
   seleccionarRespuesta(respuesta: RespuestaDTO) {
     if (respuesta.esCorrecta) {
       this.puntuacion += 10;
+    } else {
+      this.puntuacion = Math.max(0, this.puntuacion - 5); // Evita puntuación negativa
     }
 
     // Verificar si es la última pregunta
@@ -142,7 +147,7 @@ export class HomePage implements OnInit {
   }
 
   reiniciarJuego() {
-    this.router.navigateByUrl(''); // Redirige a la ruta con path ''
+    this.router.navigateByUrl('https://quizzignacioloyola.onrender.com/'); // Redirige a la ruta con path ''
   }
 
   obtenerTop10Jugadores() {
