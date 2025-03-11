@@ -29,14 +29,14 @@ import {FormsModule} from "@angular/forms";
 import {RespuestaDTO} from "../Modelos/RespuestaDTO";
 import {JugadorService} from "../Servicios/JugadorService";
 import {JugadorDTO} from "../Modelos/JugadorDTO";
-import {Router} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonRow, IonCol, IonApp, IonCard, IonCardTitle, IonCardHeader, IonCardContent, IonButton, NgForOf, NgIf, IonItem, IonLabel, IonInput, FormsModule, IonModal, IonText, IonList],
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonRow, IonCol, IonApp, IonCard, IonCardTitle, IonCardHeader, IonCardContent, IonButton, NgForOf, NgIf, IonItem, IonLabel, IonInput, FormsModule, IonModal, IonText, IonList, RouterLink],
 })
 export class HomePage implements OnInit {
 
