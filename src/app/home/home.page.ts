@@ -147,7 +147,7 @@ export class HomePage implements OnInit {
   }
 
   reiniciarJuego() {
-    this.router.navigateByUrl('https://quizzignacioloyola.onrender.com/'); // Redirige a la ruta con path ''
+    window.location.href = 'https://quizzignacioloyola.onrender.com';
   }
 
   obtenerTop10Jugadores() {
